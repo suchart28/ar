@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web AR Multi-Model</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: #000;
+      overflow: hidden;
+    }
+    #model-container {
+      flex: 1;
+      position: relative;
+    }
+    model-viewer {
+      width: 100%;
+      height: 100%;
+    }
+    #controls {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      background-color: rgba(0,0,0,0.6);
+    }
+    #controls button {
+      margin: 0 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #2196f3;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div id="model-container">
+  <model-viewer 
+    id="ar-viewer"
+    src="model1.glb" 
+    alt="3D Model" 
+    ar 
+    ar-modes="scene-viewer webxr quick-look" 
+    environment-image="neutral" 
+    auto-rotate 
+    camera-controls
+    shadow-intensity="1">
+  </model-viewer>
+</div>
+
+<div id="controls">
+  <button onclick="changeModel('model1.glb')">Model 1</button>
+  <button onclick="changeModel('model2.glb')">Model 2</button>
+  <button onclick="changeModel('model3.glb')">Model 3</button>
+</div>
+
+<script>
+  const viewer = document.getElementById('ar-viewer');
+
+  function changeModel(modelPath) {
+    viewer.src = modelPath;
+  }
+</script>
+
+</body>
+</html>
